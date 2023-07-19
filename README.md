@@ -1,24 +1,9 @@
-# README
+# Subscription Payment with Stripe Gateway
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This repository is a work-in-progress implementation of the Subscription payment method using the Stripe payment gateway with recurring payment functionality. The objective of this project is to provide users access to the website's content based on the duration of their subscribed membership.
 
-Things you may want to cover:
+## Features
 
-* Ruby version
+- Customer Subscriptions: Users can select from different subscription plans and enjoy unique features based on their chosen subscription level.
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- Recurring Payments: The application handles recurring payments using Stripe's payment gateway to ensure seamless and automatic subscription renewals.
