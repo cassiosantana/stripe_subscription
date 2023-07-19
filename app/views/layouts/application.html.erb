@@ -11,6 +11,16 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div class="container">
+      <%= link_to "Home", root_path %> | 
+      <%= link_to "Users", users_path %> | 
+      <% if user_signed_in? %>
+        <%= button_to "Sign Out", destroy_user_session_path, method: :delete %>
+      <% else %>
+        <%= link_to "Sign In", new_user_registration_path %>
+      <% end %>
+
+      <%= yield %>
+    </div>
   </body>
 </html>
