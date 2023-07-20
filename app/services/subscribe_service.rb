@@ -13,7 +13,7 @@ class SubscribeService
     user = User.find_by(id: object.client_reference_id)
     return unless user
 
-    user.update(user.update(stripe_id: object.customer, subscription_id: object.subscription))
+    user.update(stripe_id: object.customer, subscription_id: object.subscription)
   end
 
   private
