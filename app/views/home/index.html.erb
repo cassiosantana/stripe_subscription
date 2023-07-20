@@ -1,6 +1,11 @@
 <h1>Home#index</h1>
 <p>Find me in app/views/home/index.html.erb</p>
 
-<% if user_signed_in? %>
+<% if current_user&.subscribed? %>
+  <div class="message-subscribed">
+    SUBSCRIBED - <%= current_user.subscription_id %>
+  </div>
+  <br>
+<% else %>
   <p><%= link_to 'Subscribe to Premium for $50/month', new_subscription_path, class: 'btn btn-primary' %></p>
 <% end %>
