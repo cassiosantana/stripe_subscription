@@ -14,16 +14,24 @@
   </head>
 
   <body>
-    <div class="container">
-      <%= link_to "Home", root_path %> | 
-      <%= link_to "Users", users_path %> | 
-      <% if user_signed_in? %>
-        <%= button_to "Sign Out", destroy_user_session_path, method: :delete %>
-      <% else %>
-        <%= link_to "Sign In", new_user_registration_path %>
-      <% end %>
-
-      <%= yield %>
+  <div class='container'>
+    <div class='pull-left'>
+      <%= link_to "Home", root_path %>
     </div>
+    <div class='pull-right'>
+      <% if user_signed_in? %>
+        <div class="account-logout-container">
+          <%= link_to "Account", edit_user_registration_path, class: "account-text" %> |
+          <%= button_to "Log out", destroy_user_session_path, method: :delete, class: "link-style-button" %>
+        </div>
+      <% else %>
+        <%= link_to "Sign up", new_user_registration_path %> |
+        <%= link_to "Login", new_user_session_path %>
+      <% end %>
+    </div>
+
+    <%= yield %>
+
+  </div>
   </body>
 </html>
