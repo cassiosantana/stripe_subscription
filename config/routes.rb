@@ -3,11 +3,14 @@ Rails.application.routes.draw do
   devise_for :users
   get 'home/index'
   resources :users
-  resources :subscriptions, only: :new
+  resources :subscriptions, only: :new do
+    scope module: "subscriptions" do
+      collection do
+        resource :unsubscribe, only: :destroy
+        resource :resubscribe, only: :new
+      end
+    end
+  end
 
   mount StripeEvent::Engine, at: '/stripe/webhook'
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Defines the root path route ("/")
-  # root "articles#index"
 end
