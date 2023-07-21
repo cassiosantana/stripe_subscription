@@ -3,6 +3,8 @@ class UnsubscribeService
     new(user).call
   end
 
+  attr_reader :user
+
   def initialize(user)
     @user = user
   end
