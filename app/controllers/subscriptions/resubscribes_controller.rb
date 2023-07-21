@@ -1,10 +1,9 @@
 module Subscriptions
   class ResubscribesController < ApplicationController
     def new
-      updated_subscription = ResubscribeService.call(current_user)
+      success = ResubscribeService.call(current_user)
 
-      if updated_subscription
-        current_user.update(subscription_id: updated_subscription.id, expires_at: nil)
+      if success
         flash.notice = "Thanks for resubscribing!"
       else
         flash.alert = "There was a problem resubscribing!"

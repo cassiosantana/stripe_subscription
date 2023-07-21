@@ -14,7 +14,8 @@ class ResubscribeService
 
     return false unless subscription
 
-    update_subscription(subscription)
+    updated_subscription = update_subscription(subscription)
+    user.resubscribe(updated_subscription) if updated_subscription
   end
 
   private
