@@ -1,7 +1,7 @@
 module Subscriptions
   class UnsubscribesController < ApplicationController
     def destroy
-      success = UnsubscribeService.call(current_user)
+      success = StripeServices::UnsubscribeService.call(current_user)
 
       if success
         flash.notice = "You have cancelled your subscription. You will have access until

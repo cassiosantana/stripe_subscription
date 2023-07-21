@@ -1,7 +1,7 @@
 module Subscriptions
   class ResubscribesController < ApplicationController
     def new
-      success = ResubscribeService.call(current_user)
+      success = StripeServices::ResubscribeService.call(current_user)
 
       if success
         flash.notice = "Thanks for resubscribing!"
