@@ -4,6 +4,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   def subscribed?
-    subscription_id?
+    subscription_id? || expires_at
   end
 end
