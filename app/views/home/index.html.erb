@@ -6,6 +6,11 @@
     SUBSCRIBED - <%= current_user.subscription_id %>
   </div>
   <br>
+  <div>
+    <%= button_to "Cancel Subscription", unsubscribe_path,
+                data: { confirm: "Are you sure?" }, class: "btn btn-primary",
+                method: :delete unless current_user.expires_at %>
+  </div>
 <% else %>
   <p><%= link_to 'Subscribe to Premium for $50/month', new_subscription_path, class: 'btn btn-primary' %></p>
 <% end %>
