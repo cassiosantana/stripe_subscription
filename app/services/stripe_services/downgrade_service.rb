@@ -1,5 +1,5 @@
 module StripeServices
-  class UpgradeService < SubscriptionService
+  class DowngradeService < SubscriptionService
     attr_reader :subscription_id, :product_name
 
     def initialize(subscription_id, product_name)

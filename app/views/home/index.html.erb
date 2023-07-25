@@ -20,7 +20,7 @@
   </div>
 
   <div>
-    <%= button_to 'Downgrade Subscription', upgrade_path(product_name: "premium"),
+    <%= button_to 'Downgrade Subscription', downgrade_path(product_name: "premium"),
                   class: "btn btn-primary", method: :patch if @subscription_id == "Ultimate" %>
   </div>
 

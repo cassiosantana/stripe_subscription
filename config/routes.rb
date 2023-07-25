@@ -9,6 +9,7 @@ Rails.application.routes.draw do
         resource :unsubscribe, only: :destroy
         resource :resubscribe, only: :new
         resource :upgrade, only: :update
+        resource :downgrade, only: :update
       end
     end
   end
