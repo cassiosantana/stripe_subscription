@@ -17,7 +17,7 @@ module StripeServices
       )
     end
 
-    #Currently, this method performs subscription plan swapping,
+    # Currently, this method performs subscription plan swapping,
     # and both the upgrade and downgrade controllers use this method
     # because the rule for plan changes remains the same. For didactic
     # purposes, the structure of having a separate controller for each
