@@ -3,7 +3,7 @@ module Subscriptions
 
     def update
 
-      success = StripeServices::UpgradeService.upgrade_subscription(current_user.subscription_id, params[:plan_name])
+      success = StripeServices::UpgradeService.call(current_user.subscription_id, params[:product_name])
 
       if success
         flash.notice = "You have upgraded your subscription."
