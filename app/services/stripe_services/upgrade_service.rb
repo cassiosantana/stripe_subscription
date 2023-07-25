@@ -3,7 +3,6 @@ module StripeServices
 
     def self.upgrade_subscription(subscription_param, product)
       subscription = find_subscription_by_id(subscription_param)
-      upgrade_product = find_subscription_by_product(product)
 
       ::Stripe::Subscription.update(
         subscription.id,
