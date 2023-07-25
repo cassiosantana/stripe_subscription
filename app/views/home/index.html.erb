@@ -11,6 +11,15 @@
                   data: { confirm: "Are you sure?" }, class: "btn btn-primary",
                   method: :delete unless current_user.expires_at %>
   </div>
+
+  <br>
+
+  <div>
+    <%= button_to 'Upgrade Subscription', upgrade_path(plan_name: "ultimate"), class: "btn btn-primary", method: :patch %>
+  </div>
+
+  <br>
+
   <div>
     <%= link_to "Resubscribe", new_resubscribe_path, class: "btn btn-primary" if current_user.expires_at %>
   </div>
