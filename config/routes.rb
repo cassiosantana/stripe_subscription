@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       collection do
         resource :unsubscribe, only: :destroy
         resource :resubscribe, only: :new
+        resource :upgrade, only: :update
       end
     end
   end

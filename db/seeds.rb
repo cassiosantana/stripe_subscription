@@ -6,6 +6,8 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
+
+# create a Pro plan
 begin
   Stripe::Plan.create(
     product: { name: "Premium", id: "premium" },
@@ -17,4 +19,18 @@ begin
   )
 rescue Stripe::InvalidRequestError => e
   puts "Premium plan failed to create: #{e.message}"
+end
+
+# create a Ultimate plan
+begin
+  Stripe::Plan.create(
+    product: { name: "Ultimate", id: "ultimate" },
+    id: "ultimate",
+    interval: "year",
+    billing_scheme: "per_unit",
+    currency: "usd",
+    amount: "10000"
+  )
+rescue Stripe::InvalidRequestError => e
+  puts "Ultimate plan failed to create: #{e.message}"
 end

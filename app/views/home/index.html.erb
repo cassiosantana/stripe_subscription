@@ -3,7 +3,7 @@
 
 <% if current_user&.subscribed? %>
   <div class="message-subscribed">
-    SUBSCRIBED - <%= current_user.subscription_id %>
+    SUBSCRIBED - <%= @subscription_id %>
   </div>
   <br>
   <div>
@@ -11,8 +11,22 @@
                   data: { confirm: "Are you sure?" }, class: "btn btn-primary",
                   method: :delete unless current_user.expires_at %>
   </div>
+
+  <br>
+
   <div>
-    <%= link_to "Resubscribe", new_resubscribe_path, class: "btn btn-primary" if current_user.expires_at %>
+    <%= button_to 'Upgrade Subscription', upgrade_path(product_name: "ultimate"),
+                  class: "btn btn-primary", method: :patch if @subscription_id == "Premium"%>
+  </div>
+
+  <div>
+    <%= button_to 'Downgrade Subscription', upgrade_path(product_name: "premium"),
+                  class: "btn btn-primary", method: :patch if @subscription_id == "Ultimate" %>
+  </div>
+
+  <div>
+    <%= link_to "Resubscribe", new_resubscribe_path,
+                class: "btn btn-primary" if current_user.expires_at %>
   </div>
 <% else %>
   <p><%= link_to 'Subscribe to Premium for $50/month', new_subscription_path, class: 'btn btn-primary' %></p>
