@@ -1,8 +1,7 @@
 class HomeController < ApplicationController
   def index
-    if current_user&.subscription_id
-      subscription = ::Stripe::Subscription.retrieve(current_user.subscription_id)
-      @subscription_id = subscription.plan.product.capitalize
+    if current_user&.subscription.subscription_id
+      @subscription_id = current_user.subscription.subscription_id
     end
   end
 end
