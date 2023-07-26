@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable
+  has_one :subscription, dependent: :destroy
 
   def subscribed?
     subscription_id? || expires_at
