@@ -7,7 +7,7 @@ module StripeServices
     end
 
     def call
-      subscription = find_subscription_by_id(user.subscription.subscription_id)
+      subscription = find_subscription_by_id(user.subscription.stripe_id)
 
       return false unless subscription
 
