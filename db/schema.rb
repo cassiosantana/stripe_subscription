@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_27_002602) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_27_181836) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "subscriptions", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.string "subscription_id"
+    t.string "stripe_id"
     t.datetime "current_period_start"
     t.datetime "current_period_end"
     t.datetime "created_at", null: false
