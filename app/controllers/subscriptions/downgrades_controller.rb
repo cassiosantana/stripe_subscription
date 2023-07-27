@@ -1,7 +1,7 @@
 module Subscriptions
   class DowngradesController < ApplicationController
     def update
-      success = StripeServices::DowngradeService.call(current_user.subscription_id, params[:product_name])
+      success = StripeServices::DowngradeService.call(current_user.subscription.stripe_id, params[:product_name])
 
       if success
         flash.notice = "You have upgraded your subscription."

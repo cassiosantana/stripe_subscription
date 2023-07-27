@@ -7,12 +7,12 @@ module StripeServices
     end
 
     def call
-      subscription = find_subscription_by_id(user.subscription_id)
+      subscription = find_subscription_by_id(user.subscription.stripe_id)
 
       return false unless subscription
 
       updated_subscription = update_subscription(subscription, true)
-      user.unsubscribe(updated_subscription) if updated_subscription
+      user.subscription.update(active: false) if updated_subscription
     end
   end
 end

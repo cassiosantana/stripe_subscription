@@ -12,7 +12,7 @@ module StripeServices
       return false unless subscription
 
       updated_subscription = update_subscription(subscription, false)
-      user.resubscribe(updated_subscription) if updated_subscription
+      user.subscription.update(active: true) if updated_subscription
     end
   end
 end

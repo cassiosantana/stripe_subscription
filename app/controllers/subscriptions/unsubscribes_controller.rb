@@ -5,7 +5,7 @@ module Subscriptions
 
       if success
         flash.notice = "You have cancelled your subscription. You will have access until
-          #{l current_user.expires_at.to_date, format: :long}."
+          #{l current_user.subscription.current_period_end.to_date, format: :long}."
       else
         flash.alert = "There was a problem cancelling your subscription."
       end
