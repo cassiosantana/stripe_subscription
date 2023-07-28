@@ -9,33 +9,29 @@ module StripeServices
     end
 
     def call
-      subscription_record = Subscription.find_by(user_id: user.id, stripe_id: subscription.id)
+      subscription_record = find_or_create_subscription_record
 
-      if subscription_record
-        update_subscription(subscription_record)
-      else
-        create_subscription
-      end
+      update_subscription_record(subscription_record)
     end
 
     private
 
-    def update_subscription(subscription_record)
-      subscription_record.update(
-        current_period_end: Time.at(subscription.current_period_end),
-        current_period_start: Time.at(subscription.current_period_start),
-        active: true
-      )
+    def find_or_create_subscription_record
+      Subscription.find_or_create_by(user_id: user.id, stripe_id: subscription.id) do |new_subscription|
+        new_subscription.current_period_end = Time.at(subscription.current_period_end)
+        new_subscription.current_period_start = Time.at(subscription.current_period_start)
+        new_subscription.active = true
+      end
     end
 
-    def create_subscription
-      Subscription.create(
-        user_id: user.id,
-        stripe_id: subscription.id,
+    def update_subscription_record(subscription_record)
+      update_attributes = {
         current_period_end: Time.at(subscription.current_period_end),
         current_period_start: Time.at(subscription.current_period_start),
         active: true
-      )
+      }.reject { |key, value| subscription_record[key] == value }
+
+      subscription_record.update(update_attributes) if update_attributes.present?
     end
 
     def find_user
