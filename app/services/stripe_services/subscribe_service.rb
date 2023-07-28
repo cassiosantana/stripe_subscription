@@ -1,12 +1,11 @@
 module StripeServices
   class SubscribeService < BaseService
-    attr_reader :event, :object, :user, :subscription
+    attr_reader :event, :user, :subscription
 
     def initialize(event)
-      @event = event
-      @object = event.data.object
-      @user = User.find_by(id: @object.client_reference_id)
-      @subscription = Stripe::Subscription.retrieve(@object.subscription)
+      @event = event.data.object
+      @user = find_user
+      @subscription = retrieve_subscription
     end
 
     def call
@@ -37,6 +36,14 @@ module StripeServices
         current_period_start: Time.at(subscription.current_period_start),
         active: true
       )
+    end
+
+    def find_user
+      User.find_by(id: event.client_reference_id)
+    end
+
+    def retrieve_subscription
+      Stripe::Subscription.retrieve(event.subscription)
     end
   end
 end
