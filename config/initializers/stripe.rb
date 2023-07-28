@@ -11,4 +11,13 @@ StripeEvent.configure do |config|
       Rails.logger.error("Error processing checkout.session.completed event: #{e.message}")
     end
   end
+
+  config.subscribe 'customer.subscription.deleted' do |event|
+    begin
+      Subscription.destroy_by(stripe_id: event.data.object.id)
+      Customer.destroy_by(stripe_id: event.data.object.customer)
+    rescue StandardError => e
+      Rails.logger.error("Error processing checkout.session.completed event: #{e.message}")
+    end
+  end
 end
